@@ -1,0 +1,6 @@
+framework module Pods_MovieAppEvana {
+  umbrella header "Pods-MovieAppEvana-umbrella.h"
+
+  export *
+  module * { export * }
+}
