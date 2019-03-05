@@ -7,6 +7,7 @@ target 'MovieAppEvana' do
 
   # Pods for MovieAppEvana
   pod 'Alamofire'
+  pod 'SDWebImage'
 
   target 'MovieAppEvanaTests' do
     inherit! :search_paths

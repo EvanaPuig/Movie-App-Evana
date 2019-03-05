@@ -9,10 +9,11 @@
 import Foundation
 import Alamofire
 
-class PopularService: PopularServiceProtocol {
+class PopularListService: PopularListServiceProtocol {
+    
     // Call protocol function
 
-    func getPopularMovies(success: @escaping(_ data: PopularModel) -> (), failure: @escaping() -> ()) {
+    func getPopularMovies(success: @escaping(_ data: Movie) -> (), failure: @escaping() -> ()) {
 
         let url = "movie/550"
             
@@ -23,12 +24,12 @@ class PopularService: PopularServiceProtocol {
             encoding: URLEncoding.default,
             headers: ["Content-type":"application/json;charset=utf-8"],
             completion: { data in
-                
                 // mapping data
                 do {
-                    let decoded = try JSONDecoder().decode(PopularModel.self, from: data)
+                    let decoded = try JSONDecoder().decode(Movie.self, from: data)
                     success(decoded)
-                } catch _ {
+                } catch {
+                    
                     failure()
                 }
                 
