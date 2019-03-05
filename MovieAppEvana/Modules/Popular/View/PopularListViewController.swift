@@ -29,7 +29,7 @@ class PopularListViewController: UIViewController {
     }
     
     func initView() {
-        self.navigationItem.title = "Popular"
+        self.navigationItem.title = MovieAppConstants.popularTitle
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -76,8 +76,8 @@ class PopularListViewController: UIViewController {
     }
     
     func showAlert( _ message: String ) {
-        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: MovieAppConstants.popularAlertTitle, message: message, preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: MovieAppConstants.popularConfirmButton, style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -90,8 +90,8 @@ class PopularListViewController: UIViewController {
 extension PopularListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "movieCellIdentifier", for: indexPath) as? MovieListTableViewCell else {
-            fatalError("Cell not exists in storyboard")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? MovieListTableViewCell else {
+            fatalError(MovieAppConstants.cellUnexistentError)
         }
         
         let cellVM = viewModel.getCellViewModel( at: indexPath )

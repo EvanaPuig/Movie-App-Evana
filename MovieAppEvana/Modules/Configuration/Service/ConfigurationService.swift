@@ -1,32 +1,32 @@
-//  
-//  PopularService.swift
+//
+//  ConfigurationService.swift
 //  MovieAppEvana
 //
-//  Created by Evana Margain on 3/1/19.
+//  Created by Evana Margain on 3/5/19.
 //  Copyright © 2019 Evisoft. All rights reserved.
 //
 
 import Foundation
 import Alamofire
 
-class PopularListService: PopularListServiceProtocol {
+class ConfigurationService: ConfigurationServiceProtocol {
     
     // Call protocol function
-
-    func getPopularMovies(success: @escaping(_ data: Movie) -> (), failure: @escaping() -> ()) {
-
+    
+    func getConfiguration(success: @escaping(_ data: Configuration) -> (), failure: @escaping() -> ()) {
+        
         let url = MovieAppConstants.popularURL
-            
+        
         APIManager.request(
             url,
             method: .get,
-            parameters: [MovieAppConstants.apiKey : MovieAppConstants.apiKeyValue],
+            parameters: [MovieAppConstants.apiKey: MovieAppConstants.apiKeyValue],
             encoding: URLEncoding.default,
-            headers: [MovieAppConstants.headerContentType : MovieAppConstants.headerContentType],
+            headers: [MovieAppConstants.headerContentType: MovieAppConstants.headerContentTypeValue],
             completion: { data in
                 // mapping data
                 do {
-                    let decoded = try JSONDecoder().decode(Movie.self, from: data)
+                    let decoded = try JSONDecoder().decode(Configuration.self, from: data)
                     success(decoded)
                 } catch {
                     
@@ -36,7 +36,7 @@ class PopularListService: PopularListServiceProtocol {
         }) { errorMsg, errorCode in
             failure()
         }
-
+        
     }
-
+    
 }

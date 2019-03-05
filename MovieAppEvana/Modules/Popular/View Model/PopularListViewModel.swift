@@ -38,7 +38,7 @@ class PopularListViewModel {
     /// Define boolean for internet status, call when network disconnected
     var isDisconnected: Bool = false {
         didSet {
-            self.alertMessage = "No network connection. Please connect to the internet"
+            self.alertMessage = MovieAppConstants.networkUnavailableError
             self.internetConnectionStatus?()
         }
     }
@@ -125,10 +125,10 @@ class PopularListViewModel {
         
         let formattedURL = "base_url" + movie.poster_path!
         
-        return PopularListCellViewModel( titleText: movie.title ?? "movie with no title",
-                                         descText: movie.overview ?? "movie with no overview",
+        return PopularListCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
+                                         descText: movie.overview ?? MovieAppConstants.movieNoOverview,
                                          imageUrl: formattedURL,
-                                         dateText: movie.release_date ?? "no release date" )
+                                         dateText: movie.release_date ?? MovieAppConstants.movieNoReleaseDate )
     }
     
     private func processFetchedMovie( movies: [Movie] ) {
