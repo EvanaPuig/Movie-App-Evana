@@ -24,8 +24,7 @@
 		206B871F222EF29300D0DE44 /* PopularDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B871E222EF29300D0DE44 /* PopularDetailViewController.swift */; };
 		206B8722222F138F00D0DE44 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B8721222F138E00D0DE44 /* Configuration.swift */; };
 		206B8724222F14B500D0DE44 /* MovieAppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B8723222F14B500D0DE44 /* MovieAppConstants.swift */; };
-		206B872A222F17A100D0DE44 /* ConfigurationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B8729222F17A100D0DE44 /* ConfigurationServiceProtocol.swift */; };
-		206B872C222F17CC00D0DE44 /* ConfigurationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B872B222F17CC00D0DE44 /* ConfigurationService.swift */; };
+		206B872E2230430B00D0DE44 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206B872D2230430A00D0DE44 /* SearchResult.swift */; };
 		CF9AB14718E36AF25C328077 /* Pods_MovieAppEvana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3ADCF4DA1F16146BFA4FAE /* Pods_MovieAppEvana.framework */; };
 		F0B5F7E6EEBEA92DB1D868AB /* Pods_MovieAppEvanaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D212DD9CA76DA2E2A5AD84 /* Pods_MovieAppEvanaTests.framework */; };
 /* End PBXBuildFile section */
@@ -64,8 +63,7 @@
 		206B871E222EF29300D0DE44 /* PopularDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopularDetailViewController.swift; sourceTree = "<group>"; };
 		206B8721222F138E00D0DE44 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		206B8723222F14B500D0DE44 /* MovieAppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieAppConstants.swift; sourceTree = "<group>"; };
-		206B8729222F17A100D0DE44 /* ConfigurationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationServiceProtocol.swift; sourceTree = "<group>"; };
-		206B872B222F17CC00D0DE44 /* ConfigurationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationService.swift; sourceTree = "<group>"; };
+		206B872D2230430A00D0DE44 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		65D212DD9CA76DA2E2A5AD84 /* Pods_MovieAppEvanaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieAppEvanaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CF7929B868543E2519010F /* Pods-MovieAppEvanaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieAppEvanaTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieAppEvanaTests/Pods-MovieAppEvanaTests.release.xcconfig"; sourceTree = "<group>"; };
 		AA3ADCF4DA1F16146BFA4FAE /* Pods_MovieAppEvana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieAppEvana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,7 +137,6 @@
 		206B86F0222A0DE900D0DE44 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				206B8726222F177700D0DE44 /* Configuration */,
 				206B86F1222A0E4700D0DE44 /* Popular */,
 				206B871B222EF25800D0DE44 /* PopularDetail */,
 			);
@@ -205,6 +202,7 @@
 				206B8714222A2B0600D0DE44 /* Movie.swift */,
 				206B8716222D9D4D00D0DE44 /* CommonObjects.swift */,
 				206B8721222F138E00D0DE44 /* Configuration.swift */,
+				206B872D2230430A00D0DE44 /* SearchResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -232,31 +230,6 @@
 				206B8723222F14B500D0DE44 /* MovieAppConstants.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		206B8726222F177700D0DE44 /* Configuration */ = {
-			isa = PBXGroup;
-			children = (
-				206B8728222F178A00D0DE44 /* Protocol */,
-				206B8727222F178200D0DE44 /* Service */,
-			);
-			path = Configuration;
-			sourceTree = "<group>";
-		};
-		206B8727222F178200D0DE44 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				206B872B222F17CC00D0DE44 /* ConfigurationService.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
-		206B8728222F178A00D0DE44 /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				206B8729222F17A100D0DE44 /* ConfigurationServiceProtocol.swift */,
-			);
-			path = Protocol;
 			sourceTree = "<group>";
 		};
 		995780C99F88E9559A12A237 /* Pods */ = {
@@ -456,14 +429,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				206B8707222A0EB700D0DE44 /* PopularListViewModel.swift in Sources */,
-				206B872A222F17A100D0DE44 /* ConfigurationServiceProtocol.swift in Sources */,
 				206B871F222EF29300D0DE44 /* PopularDetailViewController.swift in Sources */,
 				206B8708222A0EB700D0DE44 /* PopularListViewController.swift in Sources */,
-				206B872C222F17CC00D0DE44 /* ConfigurationService.swift in Sources */,
 				206B8715222A2B0600D0DE44 /* Movie.swift in Sources */,
 				206B870F222A0F8000D0DE44 /* APIManager.swift in Sources */,
 				206B86CF2229959500D0DE44 /* AppDelegate.swift in Sources */,
 				206B8717222D9D4D00D0DE44 /* CommonObjects.swift in Sources */,
+				206B872E2230430B00D0DE44 /* SearchResult.swift in Sources */,
 				206B8711222A0F9000D0DE44 /* Reach.swift in Sources */,
 				206B870A222A0EB700D0DE44 /* PopularListService.swift in Sources */,
 				206B870B222A0EB700D0DE44 /* PopularListServiceProtocol.swift in Sources */,

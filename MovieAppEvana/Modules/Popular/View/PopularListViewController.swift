@@ -52,11 +52,13 @@ class PopularListViewController: UIViewController {
             DispatchQueue.main.async {
                 let isLoading = self?.viewModel.isLoading ?? false
                 if isLoading {
+                    self?.activityIndicator.isHidden = false
                     self?.activityIndicator.startAnimating()
                     UIView.animate(withDuration: 0.2, animations: {
                         self?.tableView.alpha = 0.0
                     })
                 }else {
+                    self?.activityIndicator.isHidden = true
                     self?.activityIndicator.stopAnimating()
                     UIView.animate(withDuration: 0.2, animations: {
                         self?.tableView.alpha = 1.0
@@ -71,7 +73,7 @@ class PopularListViewController: UIViewController {
             }
         }
         
-        viewModel.initFetch()
+        viewModel.fetchConfiguration()
         
     }
     

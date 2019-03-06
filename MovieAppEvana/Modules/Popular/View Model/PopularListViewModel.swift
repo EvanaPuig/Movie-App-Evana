@@ -12,6 +12,7 @@ class PopularListViewModel {
     private let service: PopularListServiceProtocol
     
     private var movies: [Movie] = [Movie]()
+    private var configuration = Configuration()
     
     var isAllowSegue: Bool = true
     
@@ -29,7 +30,6 @@ class PopularListViewModel {
         return cellViewModels.count
     }
     
-   
     //MARK: -- Network checking
 
     /// Define networkStatus for check network connection
@@ -79,19 +79,41 @@ class PopularListViewModel {
     @objc func networkStatusChanged(_ notification: Notification) {
         self.networkStatus = Reach().connectionStatus()
     }
-
+    
     //MARK: -- Example Func
-    func initFetch() {
+    func fetchConfiguration() {
         switch networkStatus {
         case .offline:
             self.isDisconnected = true
             self.internetConnectionStatus?()
         case .online:
             self.isLoading = true
-            // call your service here
-            self.service.getPopularMovies(success: { data in
-                print("DATA: --- \(data)")
-                self.movies = [data]
+            self.service.getConfiguration(success: { data in
+                print("CONFIGURATION: --- \(data)")
+                self.configuration = data
+                self.fetchMovies(pageNumber: 1)
+                self.isLoading = false
+            }) {
+                print("error")
+                self.isLoading = false
+            }
+        default:
+            break
+        }
+    }
+
+    //MARK: -- Example Func
+    func fetchMovies(pageNumber: Int) {
+        switch networkStatus {
+        case .offline:
+            self.isDisconnected = true
+            self.internetConnectionStatus?()
+        case .online:
+            self.isLoading = true
+            
+            self.service.getPopularMovies(pageNumber: pageNumber, success: { data in
+                print("MOVIES: --- \(data)")
+                self.movies = data.results
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
             }) {
@@ -109,21 +131,11 @@ class PopularListViewModel {
     
     func createCellViewModel( movie: Movie ) -> PopularListCellViewModel {
         
-        //Wrap a description
-        /*
-        var descTextContainer: [String] = [String]()
-        if let camera = movie.camera {
-            descTextContainer.append(camera)
-        }
-        if let description = movie.description {
-            descTextContainer.append( description )
-        }
-        let desc = descTextContainer.joined(separator: " - ")
+        let baseUrl = configuration.images?.secure_base_url
+        let imageSize = configuration.images?.poster_sizes?[4]
+        let posterPath = movie.poster_path
         
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"*/
-        
-        let formattedURL = "base_url" + movie.poster_path!
+        let formattedURL = (baseUrl ?? "") + (imageSize ?? "") + (posterPath ?? "")
         
         return PopularListCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
                                          descText: movie.overview ?? MovieAppConstants.movieNoOverview,

@@ -31,27 +31,27 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thp-af-LaJ">
-                                                    <rect key="frame" x="15" y="11" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="11" width="260" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6NS-y4-8at">
-                                                    <rect key="frame" x="15" y="42" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="42" width="260" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IDj-uz-riE">
-                                                    <rect key="frame" x="15" y="73" width="160" height="21"/>
+                                                    <rect key="frame" x="15" y="73" width="260" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dte-Ua-Nv7">
-                                                    <rect key="frame" x="175" y="0.0" width="200" height="130.5"/>
+                                                    <rect key="frame" x="275" y="0.0" width="100" height="130.5"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="200" id="JxS-fe-dr9"/>
+                                                        <constraint firstAttribute="width" constant="100" id="JxS-fe-dr9"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>

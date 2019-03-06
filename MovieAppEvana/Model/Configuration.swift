@@ -10,7 +10,7 @@ import Foundation
 
 struct Configuration: Codable {
     var images: Images?
-    var change_keys: Array<String>
+    var change_keys: Array<String>?
 }
 
 struct Images: Codable {
