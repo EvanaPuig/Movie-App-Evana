@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9933E420F7EDB952613BD71669269705"
+               BlueprintIdentifier = "B3A182A05136CDE88E65B32A4B408F10"
                BuildableName = "Pods_MovieAppEvana.framework"
                BlueprintName = "Pods-MovieAppEvana"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "9933E420F7EDB952613BD71669269705"
+            BlueprintIdentifier = "B3A182A05136CDE88E65B32A4B408F10"
             BuildableName = "Pods_MovieAppEvana.framework"
             BlueprintName = "Pods-MovieAppEvana"
             ReferencedContainer = "container:Pods.xcodeproj">

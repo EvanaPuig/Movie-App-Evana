@@ -33,7 +33,7 @@ struct APIManager {
         
         manager = Alamofire.SessionManager(configuration: configuration)
         
-        let apiURL = "https://api.themoviedb.org/3/" + url
+        let apiURL = MovieAppConstants.movieDBApiURL + url
         print("-- URL API: \(apiURL), \n\n-- headers: \(headers), \n\n-- Parameters: \(parameters)")
         
         manager.request(
@@ -85,7 +85,7 @@ struct APIManager {
     ///
     /// - Returns: string error randoms
     static func generateRandomError() -> String {
-        return "Oops. There is an error. Please reload."
+        return MovieAppConstants.genericError
     }
     
 }
