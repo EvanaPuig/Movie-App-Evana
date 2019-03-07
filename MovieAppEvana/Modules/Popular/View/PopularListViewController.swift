@@ -89,8 +89,20 @@ class PopularListViewController: UIViewController {
     
 }
 
-extension PopularListViewController: UITableViewDelegate, UITableViewDataSource {
+extension PopularListViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200.0
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.viewModel.userPressed(at: indexPath)
+        return indexPath
+    }
+    
+}
+
+extension PopularListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? MovieListTableViewCell else {
             fatalError(MovieAppConstants.cellUnexistentError)
@@ -108,15 +120,6 @@ extension PopularListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.numberOfCells
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200.0
-    }
-    
-    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        self.viewModel.userPressed(at: indexPath)
-        return indexPath
     }
     
 }
