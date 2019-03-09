@@ -34,5 +34,6 @@ struct Movie: Codable {
     var video: Bool?
     var vote_average: Double?
     var vote_count: Int?
+    var image_formatted_url: String?
 }
 

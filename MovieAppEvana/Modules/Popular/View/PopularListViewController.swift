@@ -36,6 +36,8 @@ class PopularListViewController: UIViewController {
         
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
+        
+        tableView.register(UINib(nibName: "PopularListCell", bundle: nil), forCellReuseIdentifier: "PopularListCell");
     }
     
     func initViewModel() {
@@ -104,7 +106,8 @@ extension PopularListViewController: UITableViewDelegate {
 
 extension PopularListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? MovieListTableViewCell else {
+        
+        guard let cell: PopularListCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? PopularListCell else {
             fatalError(MovieAppConstants.cellUnexistentError)
         }
         
@@ -122,29 +125,22 @@ extension PopularListViewController: UITableViewDataSource {
         return viewModel.numberOfCells
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200.0
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let selectedMovie = self.viewModel.userPressed(at: indexPath)
+        print(selectedMovie)
+        
+        let popularDetailViewController = PopularDetailViewController(nibName:"PopularDetailViewController", bundle: nil)
+        popularDetailViewController.selectedMovie = selectedMovie
+        popularDetailViewController.imageUrl = self.viewModel.selectedMovieUrl
+        self.navigationController?.pushViewController(popularDetailViewController, animated: true)
+        
+        return indexPath
+    }
+    
 }
 
-extension PopularListViewController {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let vc = segue.destination as? PopularDetailViewController,
-            let movie = viewModel.selectedMovie {
-            vc.imageUrl = movie.poster_path
-        }
-    }
-}
-
-class MovieListTableViewCell: UITableViewCell {
-    @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    var movieListCellViewModel : PopularListCellViewModel? {
-        didSet {
-            nameLabel.text = movieListCellViewModel?.titleText
-            descriptionLabel.text = movieListCellViewModel?.descText
-            mainImageView?.sd_setImage(with: URL( string: movieListCellViewModel?.imageUrl ?? "" ), completed: nil)
-            dateLabel.text = movieListCellViewModel?.dateText
-        }
-    }
-}
 
