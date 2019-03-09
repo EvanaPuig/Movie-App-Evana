@@ -12,12 +12,12 @@ class PopularListViewModel {
     private let service: PopularListServiceProtocol
     
     private var movies: [Movie] = [Movie]()
-    private var configuration = Configuration()
-    
-    var isAllowSegue: Bool = true
+    var formattedUrls = [String]()
+    var configuration = Configuration()
     
     //Define selected model
     var selectedMovie: Movie?
+    var selectedMovieUrl: String?
 
     private var cellViewModels: [PopularListCellViewModel] = [PopularListCellViewModel]() {
         didSet {
@@ -136,6 +136,7 @@ class PopularListViewModel {
         let posterPath = movie.poster_path
         
         let formattedURL = (baseUrl ?? "") + (imageSize ?? "") + (posterPath ?? "")
+        formattedUrls.append(formattedURL)
         
         return PopularListCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
                                          descText: movie.overview ?? MovieAppConstants.movieNoOverview,
@@ -155,10 +156,12 @@ class PopularListViewModel {
 }
 
 extension PopularListViewModel {
-    func userPressed( at indexPath: IndexPath ){
+    func userPressed( at indexPath: IndexPath ) -> Movie{
         let movie = self.movies[indexPath.row]
-            self.isAllowSegue = true
-            self.selectedMovie = movie
+        let imageUrl = self.formattedUrls[indexPath.row]
+        self.selectedMovie = movie
+        self.selectedMovieUrl = imageUrl
+        return movie
     }
 }
 

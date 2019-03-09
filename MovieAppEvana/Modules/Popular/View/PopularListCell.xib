@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITableViewCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PopularListCell" rowHeight="154" id="Jea-dR-EfQ" customClass="PopularListCell" customModule="MovieAppEvana" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="154"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jea-dR-EfQ" id="mjO-jA-QDp">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="153.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wMH-sP-8XZ">
+                        <rect key="frame" x="275" y="0.0" width="100" height="153.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="t5x-27-17l"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWP-So-vfk">
+                        <rect key="frame" x="16" y="21" width="259" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqM-8S-vQv">
+                        <rect key="frame" x="16" y="52" width="259" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONH-27-u27">
+                        <rect key="frame" x="16" y="83" width="259" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ONH-27-u27" firstAttribute="top" secondItem="eqM-8S-vQv" secondAttribute="bottom" constant="10" id="IN5-4R-L01"/>
+                    <constraint firstItem="uWP-So-vfk" firstAttribute="leading" secondItem="mjO-jA-QDp" secondAttribute="leadingMargin" id="ITJ-Gm-Fw6"/>
+                    <constraint firstAttribute="bottom" secondItem="wMH-sP-8XZ" secondAttribute="bottom" id="P7H-px-Qd2"/>
+                    <constraint firstItem="eqM-8S-vQv" firstAttribute="top" secondItem="uWP-So-vfk" secondAttribute="bottom" constant="10" id="YUg-zv-oAZ"/>
+                    <constraint firstItem="wMH-sP-8XZ" firstAttribute="top" secondItem="mjO-jA-QDp" secondAttribute="top" id="YWz-2l-ZLn"/>
+                    <constraint firstItem="uWP-So-vfk" firstAttribute="top" secondItem="mjO-jA-QDp" secondAttribute="topMargin" constant="10" id="eWI-H5-Yf8"/>
+                    <constraint firstItem="eqM-8S-vQv" firstAttribute="leading" secondItem="mjO-jA-QDp" secondAttribute="leadingMargin" id="iLn-HF-YM1"/>
+                    <constraint firstAttribute="trailing" secondItem="wMH-sP-8XZ" secondAttribute="trailing" id="jSc-rR-BfS"/>
+                    <constraint firstItem="ONH-27-u27" firstAttribute="leading" secondItem="mjO-jA-QDp" secondAttribute="leadingMargin" id="jX2-5C-Yz6"/>
+                    <constraint firstItem="wMH-sP-8XZ" firstAttribute="leading" secondItem="uWP-So-vfk" secondAttribute="trailing" id="ur0-5S-dWF"/>
+                    <constraint firstItem="wMH-sP-8XZ" firstAttribute="leading" secondItem="eqM-8S-vQv" secondAttribute="trailing" id="vjo-rg-dAj"/>
+                    <constraint firstItem="wMH-sP-8XZ" firstAttribute="leading" secondItem="ONH-27-u27" secondAttribute="trailing" id="xC9-Xo-Sum"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateLabel" destination="ONH-27-u27" id="q1W-53-JoZ"/>
+                <outlet property="descriptionLabel" destination="eqM-8S-vQv" id="GGt-rO-6LK"/>
+                <outlet property="mainImageView" destination="wMH-sP-8XZ" id="aXm-Sp-PRW"/>
+                <outlet property="nameLabel" destination="uWP-So-vfk" id="vpO-MF-rdt"/>
+            </connections>
+            <point key="canvasLocation" x="72.799999999999997" y="-203.29835082458771"/>
+        </tableViewCell>
+    </objects>
+</document>
