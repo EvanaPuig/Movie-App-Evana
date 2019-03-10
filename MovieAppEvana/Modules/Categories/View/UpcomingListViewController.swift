@@ -1,23 +1,23 @@
-//  
-//  PopularListViewController.swift
+//
+//  UpcomingListViewController.swift
 //  MovieAppEvana
 //
-//  Created by Evana Margain on 3/1/19.
+//  Created by Evana Margain on 3/10/19.
 //  Copyright © 2019 Evisoft. All rights reserved.
 //
 
 import UIKit
 
-class PopularListViewController: UIViewController {
+class UpcomingListViewController: UIViewController {
     // OUTLETS HERE
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // VARIABLES HERE
-    lazy var viewModel: PopularListViewModel = {
-        return PopularListViewModel()
+    lazy var viewModel: CategoriesListViewModel = {
+        return CategoriesListViewModel()
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,7 +91,7 @@ class PopularListViewController: UIViewController {
     
 }
 
-extension PopularListViewController: UITableViewDelegate, UITableViewDataSource {
+extension UpcomingListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         

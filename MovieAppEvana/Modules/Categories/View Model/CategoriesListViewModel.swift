@@ -8,8 +8,8 @@
 
 import Foundation
 
-class PopularListViewModel {
-    private let service: PopularListServiceProtocol
+class CategoriesListViewModel {
+    private let service: CategoriesListServiceProtocol
     
     private var movies: [Movie] = [Movie]()
     var formattedUrls = [String]()
@@ -67,7 +67,7 @@ class PopularListViewModel {
     var serverErrorStatus: (() -> ())?
     var didGetData: (() -> ())?
 
-    init(withPopular serviceProtocol: PopularListServiceProtocol = PopularListService() ) {
+    init(withPopular serviceProtocol: CategoriesListServiceProtocol = CategoriesListService() ) {
         self.service = serviceProtocol
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
@@ -155,7 +155,7 @@ class PopularListViewModel {
 
 }
 
-extension PopularListViewModel {
+extension CategoriesListViewModel {
     func userPressed( at indexPath: IndexPath ) -> Movie{
         let movie = self.movies[indexPath.row]
         let imageUrl = self.formattedUrls[indexPath.row]
@@ -163,11 +163,4 @@ extension PopularListViewModel {
         self.selectedMovieUrl = imageUrl
         return movie
     }
-}
-
-struct CategoriesCustomCellViewModel {
-    let titleText: String
-    let descText: String
-    let imageUrl: String
-    let dateText: String
 }
