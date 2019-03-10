@@ -1,5 +1,5 @@
 //
-//  PopularListCell.swift
+//  CategoriesCustomCell.swift
 //  MovieAppEvana
 //
 //  Created by Evana Margain on 3/8/19.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class PopularListCell: UITableViewCell {
+class CategoriesCustomCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    var movieListCellViewModel : PopularListCellViewModel? {
+    var movieListCellViewModel : CategoriesCustomCellViewModel? {
         didSet {
             nameLabel.text = movieListCellViewModel?.titleText
             descriptionLabel.text = movieListCellViewModel?.descText

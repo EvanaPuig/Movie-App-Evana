@@ -37,7 +37,7 @@ class PopularListViewController: UIViewController {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.register(UINib(nibName: "PopularListCell", bundle: nil), forCellReuseIdentifier: "PopularListCell");
+        tableView.register(UINib(nibName: "CategoriesCustomCell", bundle: nil), forCellReuseIdentifier: "CategoriesCustomCell");
     }
     
     func initViewModel() {
@@ -95,7 +95,7 @@ extension PopularListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell: PopularListCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? PopularListCell else {
+        guard let cell: CategoriesCustomCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? CategoriesCustomCell else {
             fatalError(MovieAppConstants.cellUnexistentError)
         }
         

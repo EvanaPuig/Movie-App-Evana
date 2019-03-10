@@ -23,7 +23,7 @@ final class MovieAppConstants {
     static let popularTitle = "Popular"
     static let popularAlertTitle = "Alert"
     static let popularConfirmButton = "Ok"
-    static let popularCellIdentifier = "PopularListCell"
+    static let popularCellIdentifier = "CategoriesCustomCell"
     static let movieNoTitle = "movie with no title"
     static let movieNoOverview = "movie with no overview"
     static let movieNoReleaseDate = "no release date"

@@ -19,7 +19,7 @@ class PopularListViewModel {
     var selectedMovie: Movie?
     var selectedMovieUrl: String?
 
-    private var cellViewModels: [PopularListCellViewModel] = [PopularListCellViewModel]() {
+    private var cellViewModels: [CategoriesCustomCellViewModel] = [CategoriesCustomCellViewModel]() {
         didSet {
             self.reloadTableViewClosure?()
         }
@@ -125,11 +125,11 @@ class PopularListViewModel {
         }
     }
     
-    func getCellViewModel( at indexPath: IndexPath ) -> PopularListCellViewModel {
+    func getCellViewModel( at indexPath: IndexPath ) -> CategoriesCustomCellViewModel {
         return cellViewModels[indexPath.row]
     }
     
-    func createCellViewModel( movie: Movie ) -> PopularListCellViewModel {
+    func createCellViewModel( movie: Movie ) -> CategoriesCustomCellViewModel {
         
         let baseUrl = configuration.images?.secure_base_url
         let imageSize = configuration.images?.poster_sizes?[4]
@@ -138,7 +138,7 @@ class PopularListViewModel {
         let formattedURL = (baseUrl ?? "") + (imageSize ?? "") + (posterPath ?? "")
         formattedUrls.append(formattedURL)
         
-        return PopularListCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
+        return CategoriesCustomCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
                                          descText: movie.overview ?? MovieAppConstants.movieNoOverview,
                                          imageUrl: formattedURL,
                                          dateText: movie.release_date ?? MovieAppConstants.movieNoReleaseDate )
@@ -146,7 +146,7 @@ class PopularListViewModel {
     
     private func processFetchedMovie( movies: [Movie] ) {
         self.movies = movies // Cache
-        var vms = [PopularListCellViewModel]()
+        var vms = [CategoriesCustomCellViewModel]()
         for movie in movies {
             vms.append( createCellViewModel(movie: movie) )
         }
@@ -165,7 +165,7 @@ extension PopularListViewModel {
     }
 }
 
-struct PopularListCellViewModel {
+struct CategoriesCustomCellViewModel {
     let titleText: String
     let descText: String
     let imageUrl: String
