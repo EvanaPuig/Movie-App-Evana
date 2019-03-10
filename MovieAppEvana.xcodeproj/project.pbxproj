@@ -30,6 +30,8 @@
 		206EAFEE2235B28F003F4695 /* UpcomingListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206EAFED2235B28F003F4695 /* UpcomingListViewController.xib */; };
 		206EAFF32235B46A003F4695 /* CategoriesCustomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206EAFF22235B46A003F4695 /* CategoriesCustomCellViewModel.swift */; };
 		206EAFF62235B5DA003F4695 /* PopularDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206EAFF52235B5DA003F4695 /* PopularDetailViewController.xib */; };
+		206EAFF82235B7C1003F4695 /* CategoriesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206EAFF72235B7C1003F4695 /* CategoriesTabBarViewController.swift */; };
+		206EAFFA2235B7D0003F4695 /* CategoriesTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206EAFF92235B7D0003F4695 /* CategoriesTabBarViewController.xib */; };
 		2085A5F022335AEA0010C95B /* PopularListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2085A5EF22335AEA0010C95B /* PopularListViewController.xib */; };
 		2085A5F222335BE00010C95B /* CategoriesCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2085A5F122335BE00010C95B /* CategoriesCustomCell.xib */; };
 		CF9AB14718E36AF25C328077 /* Pods_MovieAppEvana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3ADCF4DA1F16146BFA4FAE /* Pods_MovieAppEvana.framework */; };
@@ -76,6 +78,8 @@
 		206EAFED2235B28F003F4695 /* UpcomingListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingListViewController.xib; sourceTree = "<group>"; };
 		206EAFF22235B46A003F4695 /* CategoriesCustomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesCustomCellViewModel.swift; sourceTree = "<group>"; };
 		206EAFF52235B5DA003F4695 /* PopularDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularDetailViewController.xib; sourceTree = "<group>"; };
+		206EAFF72235B7C1003F4695 /* CategoriesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabBarViewController.swift; sourceTree = "<group>"; };
+		206EAFF92235B7D0003F4695 /* CategoriesTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTabBarViewController.xib; sourceTree = "<group>"; };
 		2085A5EF22335AEA0010C95B /* PopularListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularListViewController.xib; sourceTree = "<group>"; };
 		2085A5F122335BE00010C95B /* CategoriesCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCustomCell.xib; sourceTree = "<group>"; };
 		65D212DD9CA76DA2E2A5AD84 /* Pods_MovieAppEvanaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieAppEvanaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,12 +184,11 @@
 		206B86FE222A0EB700D0DE44 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				206B86FF222A0EB700D0DE44 /* PopularListViewController.swift */,
-				2085A5EF22335AEA0010C95B /* PopularListViewController.xib */,
-				206EAFEB2235B274003F4695 /* UpcomingListViewController.swift */,
-				206EAFED2235B28F003F4695 /* UpcomingListViewController.xib */,
-				206EAFDF2235B173003F4695 /* TopRatedListViewController.swift */,
-				206EAFDD2235B164003F4695 /* TopRatedListViewController.xib */,
+				206EAFF72235B7C1003F4695 /* CategoriesTabBarViewController.swift */,
+				206EAFF92235B7D0003F4695 /* CategoriesTabBarViewController.xib */,
+				206EAFFB2235B7D6003F4695 /* Popular */,
+				206EAFFC2235B7E0003F4695 /* Upcoming */,
+				206EAFFD2235B7ED003F4695 /* TopRated */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -283,6 +286,33 @@
 				206EAFF12235B456003F4695 /* View Model */,
 			);
 			path = CustomCell;
+			sourceTree = "<group>";
+		};
+		206EAFFB2235B7D6003F4695 /* Popular */ = {
+			isa = PBXGroup;
+			children = (
+				206B86FF222A0EB700D0DE44 /* PopularListViewController.swift */,
+				2085A5EF22335AEA0010C95B /* PopularListViewController.xib */,
+			);
+			path = Popular;
+			sourceTree = "<group>";
+		};
+		206EAFFC2235B7E0003F4695 /* Upcoming */ = {
+			isa = PBXGroup;
+			children = (
+				206EAFEB2235B274003F4695 /* UpcomingListViewController.swift */,
+				206EAFED2235B28F003F4695 /* UpcomingListViewController.xib */,
+			);
+			path = Upcoming;
+			sourceTree = "<group>";
+		};
+		206EAFFD2235B7ED003F4695 /* TopRated */ = {
+			isa = PBXGroup;
+			children = (
+				206EAFDF2235B173003F4695 /* TopRatedListViewController.swift */,
+				206EAFDD2235B164003F4695 /* TopRatedListViewController.xib */,
+			);
+			path = TopRated;
 			sourceTree = "<group>";
 		};
 		995780C99F88E9559A12A237 /* Pods */ = {
@@ -394,6 +424,7 @@
 				206B86DB2229959900D0DE44 /* LaunchScreen.storyboard in Resources */,
 				2085A5F222335BE00010C95B /* CategoriesCustomCell.xib in Resources */,
 				206EAFEE2235B28F003F4695 /* UpcomingListViewController.xib in Resources */,
+				206EAFFA2235B7D0003F4695 /* CategoriesTabBarViewController.xib in Resources */,
 				206EAFF62235B5DA003F4695 /* PopularDetailViewController.xib in Resources */,
 				206B86D82229959900D0DE44 /* Assets.xcassets in Resources */,
 			);
@@ -488,6 +519,7 @@
 				206EAFEC2235B274003F4695 /* UpcomingListViewController.swift in Sources */,
 				206B871F222EF29300D0DE44 /* PopularDetailViewController.swift in Sources */,
 				206B8708222A0EB700D0DE44 /* PopularListViewController.swift in Sources */,
+				206EAFF82235B7C1003F4695 /* CategoriesTabBarViewController.swift in Sources */,
 				206EAFCC223368DD003F4695 /* CategoriesCustomCell.swift in Sources */,
 				206B8715222A2B0600D0DE44 /* Movie.swift in Sources */,
 				206B870F222A0F8000D0DE44 /* APIManager.swift in Sources */,
