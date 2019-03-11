@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class PopularListService: PopularListServiceProtocol {
+class CategoriesListService: CategoriesListServiceProtocol {
     
     // Call protocol function
 
@@ -37,6 +37,58 @@ class PopularListService: PopularListServiceProtocol {
             failure()
         }
 
+    }
+    
+    func getTopRatedMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ()) {
+        
+        let url = MovieAppConstants.topRatedURL
+        
+        APIManager.request(
+            url,
+            method: .get,
+            parameters: [MovieAppConstants.apiKey : MovieAppConstants.apiKeyValue, MovieAppConstants.parameterPage: pageNumber],
+            encoding: URLEncoding.default,
+            headers: [MovieAppConstants.headerContentType : MovieAppConstants.headerContentType],
+            completion: { data in
+                // mapping data
+                do {
+                    let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                    success(searchResult)
+                } catch {
+                    
+                    failure()
+                }
+                
+        }) { errorMsg, errorCode in
+            failure()
+        }
+        
+    }
+    
+    func getUpcomingMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ()) {
+        
+        let url = MovieAppConstants.upcomingURL
+        
+        APIManager.request(
+            url,
+            method: .get,
+            parameters: [MovieAppConstants.apiKey : MovieAppConstants.apiKeyValue, MovieAppConstants.parameterPage: pageNumber],
+            encoding: URLEncoding.default,
+            headers: [MovieAppConstants.headerContentType : MovieAppConstants.headerContentType],
+            completion: { data in
+                // mapping data
+                do {
+                    let searchResult = try JSONDecoder().decode(SearchResult.self, from: data)
+                    success(searchResult)
+                } catch {
+                    
+                    failure()
+                }
+                
+        }) { errorMsg, errorCode in
+            failure()
+        }
+        
     }
     
     func getConfiguration(success: @escaping(_ data: Configuration) -> (), failure: @escaping() -> ()) {

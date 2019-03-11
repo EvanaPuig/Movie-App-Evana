@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol PopularListServiceProtocol {
+protocol CategoriesListServiceProtocol {
 
     /// - Parameters:
     ///   - success: -- success closure response, add your Model on this closure.
@@ -16,6 +16,8 @@ protocol PopularListServiceProtocol {
     ///   - failure: -- failure closure response, add your Model on this closure.  
     ///                 example: success(_ data: APIError) -> ()
     func getPopularMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ())
+    func getUpcomingMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ())
+    func getTopRatedMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ())
     func getConfiguration(success: @escaping(_ data: Configuration) -> (), failure: @escaping() -> ())
 
 }

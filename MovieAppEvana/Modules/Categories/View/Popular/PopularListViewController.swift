@@ -14,8 +14,8 @@ class PopularListViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // VARIABLES HERE
-    lazy var viewModel: PopularListViewModel = {
-        return PopularListViewModel()
+    lazy var viewModel: CategoriesListViewModel = {
+        return CategoriesListViewModel()
     }()
 
     override func viewDidLoad() {
@@ -37,7 +37,7 @@ class PopularListViewController: UIViewController {
         tableView.estimatedRowHeight = 150
         tableView.rowHeight = UITableView.automaticDimension
         
-        tableView.register(UINib(nibName: "PopularListCell", bundle: nil), forCellReuseIdentifier: "PopularListCell");
+        tableView.register(UINib(nibName: "CategoriesCustomCell", bundle: nil), forCellReuseIdentifier: "CategoriesCustomCell");
     }
     
     func initViewModel() {
@@ -75,13 +75,13 @@ class PopularListViewController: UIViewController {
             }
         }
         
-        viewModel.fetchConfiguration()
+        viewModel.fetchConfiguration(caller: "popular")
         
     }
     
     func showAlert( _ message: String ) {
-        let alert = UIAlertController(title: MovieAppConstants.popularAlertTitle, message: message, preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: MovieAppConstants.popularConfirmButton, style: .cancel, handler: nil))
+        let alert = UIAlertController(title: MovieAppConstants.genericAlertTitle, message: message, preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: MovieAppConstants.genericConfirmButton, style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -95,7 +95,7 @@ extension PopularListViewController: UITableViewDelegate, UITableViewDataSource 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell: PopularListCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? PopularListCell else {
+        guard let cell: CategoriesCustomCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.genericCellIdentifier, for: indexPath) as? CategoriesCustomCell else {
             fatalError(MovieAppConstants.cellUnexistentError)
         }
         

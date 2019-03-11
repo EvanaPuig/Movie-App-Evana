@@ -8,8 +8,8 @@
 
 import Foundation
 
-class PopularListViewModel {
-    private let service: PopularListServiceProtocol
+class CategoriesListViewModel {
+    private let service: CategoriesListServiceProtocol
     
     private var movies: [Movie] = [Movie]()
     var formattedUrls = [String]()
@@ -19,7 +19,7 @@ class PopularListViewModel {
     var selectedMovie: Movie?
     var selectedMovieUrl: String?
 
-    private var cellViewModels: [PopularListCellViewModel] = [PopularListCellViewModel]() {
+    private var cellViewModels: [CategoriesCustomCellViewModel] = [CategoriesCustomCellViewModel]() {
         didSet {
             self.reloadTableViewClosure?()
         }
@@ -67,7 +67,7 @@ class PopularListViewModel {
     var serverErrorStatus: (() -> ())?
     var didGetData: (() -> ())?
 
-    init(withPopular serviceProtocol: PopularListServiceProtocol = PopularListService() ) {
+    init(withPopular serviceProtocol: CategoriesListServiceProtocol = CategoriesListService() ) {
         self.service = serviceProtocol
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
@@ -80,8 +80,7 @@ class PopularListViewModel {
         self.networkStatus = Reach().connectionStatus()
     }
     
-    //MARK: -- Example Func
-    func fetchConfiguration() {
+    func fetchConfiguration(caller: String) {
         switch networkStatus {
         case .offline:
             self.isDisconnected = true
@@ -91,7 +90,13 @@ class PopularListViewModel {
             self.service.getConfiguration(success: { data in
                 print("CONFIGURATION: --- \(data)")
                 self.configuration = data
-                self.fetchMovies(pageNumber: 1)
+                if(caller == "popular"){
+                    self.fetchPopularMovies(pageNumber: 1)
+                } else if(caller == "topRated") {
+                    self.fetchTopRatedMovies(pageNumber: 1)
+                }else {
+                    self.fetchUpcomingMovies(pageNumber: 1)
+                }
                 self.isLoading = false
             }) {
                 print("error")
@@ -102,8 +107,7 @@ class PopularListViewModel {
         }
     }
 
-    //MARK: -- Example Func
-    func fetchMovies(pageNumber: Int) {
+    func fetchPopularMovies(pageNumber: Int) {
         switch networkStatus {
         case .offline:
             self.isDisconnected = true
@@ -125,11 +129,55 @@ class PopularListViewModel {
         }
     }
     
-    func getCellViewModel( at indexPath: IndexPath ) -> PopularListCellViewModel {
+    func fetchTopRatedMovies(pageNumber: Int) {
+        switch networkStatus {
+        case .offline:
+            self.isDisconnected = true
+            self.internetConnectionStatus?()
+        case .online:
+            self.isLoading = true
+            
+            self.service.getTopRatedMovies(pageNumber: pageNumber, success: { data in
+                print("MOVIES: --- \(data)")
+                self.movies = data.results
+                self.processFetchedMovie(movies: self.movies)
+                self.isLoading = false
+            }) {
+                print("error")
+                self.isLoading = false
+            }
+        default:
+            break
+        }
+    }
+    
+    func fetchUpcomingMovies(pageNumber: Int) {
+        switch networkStatus {
+        case .offline:
+            self.isDisconnected = true
+            self.internetConnectionStatus?()
+        case .online:
+            self.isLoading = true
+            
+            self.service.getUpcomingMovies(pageNumber: pageNumber, success: { data in
+                print("MOVIES: --- \(data)")
+                self.movies = data.results
+                self.processFetchedMovie(movies: self.movies)
+                self.isLoading = false
+            }) {
+                print("error")
+                self.isLoading = false
+            }
+        default:
+            break
+        }
+    }
+    
+    func getCellViewModel( at indexPath: IndexPath ) -> CategoriesCustomCellViewModel {
         return cellViewModels[indexPath.row]
     }
     
-    func createCellViewModel( movie: Movie ) -> PopularListCellViewModel {
+    func createCellViewModel( movie: Movie ) -> CategoriesCustomCellViewModel {
         
         let baseUrl = configuration.images?.secure_base_url
         let imageSize = configuration.images?.poster_sizes?[4]
@@ -138,7 +186,7 @@ class PopularListViewModel {
         let formattedURL = (baseUrl ?? "") + (imageSize ?? "") + (posterPath ?? "")
         formattedUrls.append(formattedURL)
         
-        return PopularListCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
+        return CategoriesCustomCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
                                          descText: movie.overview ?? MovieAppConstants.movieNoOverview,
                                          imageUrl: formattedURL,
                                          dateText: movie.release_date ?? MovieAppConstants.movieNoReleaseDate )
@@ -146,7 +194,7 @@ class PopularListViewModel {
     
     private func processFetchedMovie( movies: [Movie] ) {
         self.movies = movies // Cache
-        var vms = [PopularListCellViewModel]()
+        var vms = [CategoriesCustomCellViewModel]()
         for movie in movies {
             vms.append( createCellViewModel(movie: movie) )
         }
@@ -155,7 +203,7 @@ class PopularListViewModel {
 
 }
 
-extension PopularListViewModel {
+extension CategoriesListViewModel {
     func userPressed( at indexPath: IndexPath ) -> Movie{
         let movie = self.movies[indexPath.row]
         let imageUrl = self.formattedUrls[indexPath.row]
@@ -163,11 +211,4 @@ extension PopularListViewModel {
         self.selectedMovieUrl = imageUrl
         return movie
     }
-}
-
-struct PopularListCellViewModel {
-    let titleText: String
-    let descText: String
-    let imageUrl: String
-    let dateText: String
 }
