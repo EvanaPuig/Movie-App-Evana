@@ -75,13 +75,13 @@ class TopRatedListViewController: UIViewController {
             }
         }
         
-        viewModel.fetchConfiguration()
+        viewModel.fetchConfiguration(caller: "topRated")
         
     }
     
     func showAlert( _ message: String ) {
-        let alert = UIAlertController(title: MovieAppConstants.popularAlertTitle, message: message, preferredStyle: .alert)
-        alert.addAction( UIAlertAction(title: MovieAppConstants.popularConfirmButton, style: .cancel, handler: nil))
+        let alert = UIAlertController(title: MovieAppConstants.genericAlertTitle, message: message, preferredStyle: .alert)
+        alert.addAction( UIAlertAction(title: MovieAppConstants.genericConfirmButton, style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -95,7 +95,7 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell: CategoriesCustomCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.popularCellIdentifier, for: indexPath) as? CategoriesCustomCell else {
+        guard let cell: CategoriesCustomCell = tableView.dequeueReusableCell(withIdentifier: MovieAppConstants.genericCellIdentifier, for: indexPath) as? CategoriesCustomCell else {
             fatalError(MovieAppConstants.cellUnexistentError)
         }
         

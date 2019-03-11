@@ -80,8 +80,7 @@ class CategoriesListViewModel {
         self.networkStatus = Reach().connectionStatus()
     }
     
-    //MARK: -- Example Func
-    func fetchConfiguration() {
+    func fetchConfiguration(caller: String) {
         switch networkStatus {
         case .offline:
             self.isDisconnected = true
@@ -91,7 +90,13 @@ class CategoriesListViewModel {
             self.service.getConfiguration(success: { data in
                 print("CONFIGURATION: --- \(data)")
                 self.configuration = data
-                self.fetchMovies(pageNumber: 1)
+                if(caller == "popular"){
+                    self.fetchPopularMovies(pageNumber: 1)
+                } else if(caller == "topRated") {
+                    self.fetchTopRatedMovies(pageNumber: 1)
+                }else {
+                    self.fetchUpcomingMovies(pageNumber: 1)
+                }
                 self.isLoading = false
             }) {
                 print("error")
@@ -102,8 +107,7 @@ class CategoriesListViewModel {
         }
     }
 
-    //MARK: -- Example Func
-    func fetchMovies(pageNumber: Int) {
+    func fetchPopularMovies(pageNumber: Int) {
         switch networkStatus {
         case .offline:
             self.isDisconnected = true
@@ -112,6 +116,50 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getPopularMovies(pageNumber: pageNumber, success: { data in
+                print("MOVIES: --- \(data)")
+                self.movies = data.results
+                self.processFetchedMovie(movies: self.movies)
+                self.isLoading = false
+            }) {
+                print("error")
+                self.isLoading = false
+            }
+        default:
+            break
+        }
+    }
+    
+    func fetchTopRatedMovies(pageNumber: Int) {
+        switch networkStatus {
+        case .offline:
+            self.isDisconnected = true
+            self.internetConnectionStatus?()
+        case .online:
+            self.isLoading = true
+            
+            self.service.getTopRatedMovies(pageNumber: pageNumber, success: { data in
+                print("MOVIES: --- \(data)")
+                self.movies = data.results
+                self.processFetchedMovie(movies: self.movies)
+                self.isLoading = false
+            }) {
+                print("error")
+                self.isLoading = false
+            }
+        default:
+            break
+        }
+    }
+    
+    func fetchUpcomingMovies(pageNumber: Int) {
+        switch networkStatus {
+        case .offline:
+            self.isDisconnected = true
+            self.internetConnectionStatus?()
+        case .online:
+            self.isLoading = true
+            
+            self.service.getUpcomingMovies(pageNumber: pageNumber, success: { data in
                 print("MOVIES: --- \(data)")
                 self.movies = data.results
                 self.processFetchedMovie(movies: self.movies)

@@ -23,20 +23,20 @@ class CategoriesTabBarViewController: UITabBarController, UITabBarControllerDele
         
         // Create Tab one
         let tabOne = PopularListViewController()
-        let tabOneBarItem = UITabBarItem(title: "Popular", image: UIImage(named: "defaultImage.png"), selectedImage: UIImage(named: "selectedImage.png"))
+        let tabOneBarItem = UITabBarItem(title: MovieAppConstants.popularTitle, image: UIImage(named: "defaultImage.png"), selectedImage: UIImage(named: "selectedImage.png"))
         
         tabOne.tabBarItem = tabOneBarItem
         
         
         // Create Tab two
         let tabTwo = UpcomingListViewController()
-        let tabTwoBarItem2 = UITabBarItem(title: "Upcoming", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
+        let tabTwoBarItem2 = UITabBarItem(title: MovieAppConstants.upcomingTitle, image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
         
         tabTwo.tabBarItem = tabTwoBarItem2
         
         // Create Tab three
         let tabThree = TopRatedListViewController()
-        let tabThreeBarItem3 = UITabBarItem(title: "Top Rated", image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
+        let tabThreeBarItem3 = UITabBarItem(title: MovieAppConstants.topRatedTitle, image: UIImage(named: "defaultImage2.png"), selectedImage: UIImage(named: "selectedImage2.png"))
         
         tabThree.tabBarItem = tabThreeBarItem3
         
@@ -46,6 +46,6 @@ class CategoriesTabBarViewController: UITabBarController, UITabBarControllerDele
     
     // UITabBarControllerDelegate method
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Selected \(viewController.title!)")
+        print("Selected \(viewController.nibName!)")
     }
 }

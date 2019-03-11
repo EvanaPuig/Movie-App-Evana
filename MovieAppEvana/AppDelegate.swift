@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navController = UINavigationController()
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        let viewController = PopularListViewController()
+        let viewController = CategoriesTabBarViewController()
         navController!.pushViewController(viewController, animated: false)
         
         window!.rootViewController = navController

@@ -41,7 +41,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
     
     func getTopRatedMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ()) {
         
-        let url = MovieAppConstants.popularURL
+        let url = MovieAppConstants.topRatedURL
         
         APIManager.request(
             url,
@@ -67,7 +67,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
     
     func getUpcomingMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ()) {
         
-        let url = MovieAppConstants.popularURL
+        let url = MovieAppConstants.upcomingURL
         
         APIManager.request(
             url,

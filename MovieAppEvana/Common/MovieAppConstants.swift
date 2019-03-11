@@ -20,13 +20,15 @@ final class MovieAppConstants {
     
     /* PopularList */
     static let popularURL = "discover/movie?sort_by=popularity.desc"
-    static let popularTitle = "Popular"
-    static let popularAlertTitle = "Alert"
-    static let popularConfirmButton = "Ok"
-    static let popularCellIdentifier = "CategoriesCustomCell"
-    static let movieNoTitle = "movie with no title"
-    static let movieNoOverview = "movie with no overview"
-    static let movieNoReleaseDate = "no release date"
+    static let popularTitle = "Popular Movies"
+    
+    /* UpcomingList */
+    static let upcomingURL = "discover/movie?primary_release_date.gte=2019-03-10"
+    static let upcomingTitle = "Upcoming Movies"
+    
+    /* TopRatedList */
+    static let topRatedURL = "discover/movie?sort_by=vote_average.desc"
+    static let topRatedTitle = "Top Rated"
     
     /* Configuration */
     static let configurationURL = "configuration"
@@ -35,5 +37,10 @@ final class MovieAppConstants {
     static let genericError = "Oops. There is an error. Please reload."
     static let cellUnexistentError = "Cell does not exist in storyboard"
     static let networkUnavailableError = "No network connection. Please connect to the internet"
-    
+    static let genericAlertTitle = "Alert"
+    static let genericConfirmButton = "Ok"
+    static let genericCellIdentifier = "CategoriesCustomCell"
+    static let movieNoTitle = "movie with no title"
+    static let movieNoOverview = "movie with no overview"
+    static let movieNoReleaseDate = "no release date"
 }

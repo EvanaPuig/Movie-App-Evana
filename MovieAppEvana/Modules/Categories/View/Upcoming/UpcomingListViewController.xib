@@ -10,23 +10,28 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpcomingListViewController" customModule="MovieAppEvana" customModuleProvider="target">
+            <connections>
+                <outlet property="activityIndicator" destination="Y8x-8X-gA4" id="kxc-Vh-MdN"/>
+                <outlet property="tableView" destination="B6k-cd-kKW" id="311-rp-Jlk"/>
+                <outlet property="view" destination="iN0-l3-epB" id="hSI-kK-8j2"/>
+            </connections>
+        </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6k-cd-kKW">
-                    <rect key="frame" x="0.0" y="25" width="375" height="616"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B6k-cd-kKW">
+                    <rect key="frame" x="0.0" y="58" width="375" height="609"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" red="1" green="0.28777974960000002" blue="0.93945359640000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
-                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Y8x-8X-gA4">
-                    <rect key="frame" x="50" y="323" width="274" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Y8x-8X-gA4">
+                    <rect key="frame" x="50" y="324" width="275" height="19"/>
                 </activityIndicatorView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Upcoming View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxf-QQ-wKW">
-                    <rect key="frame" x="100" y="323" width="134" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upcoming View" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kxf-QQ-wKW">
+                    <rect key="frame" x="120" y="37" width="135" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -34,7 +39,17 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="B6k-cd-kKW" firstAttribute="top" secondItem="kxf-QQ-wKW" secondAttribute="bottom" constant="10" id="LoO-Og-ZIY"/>
+                <constraint firstItem="B6k-cd-kKW" firstAttribute="top" secondItem="kxf-QQ-wKW" secondAttribute="bottom" id="1ji-oc-T79"/>
+                <constraint firstItem="B6k-cd-kKW" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4KY-Zo-T0m"/>
+                <constraint firstItem="kxf-QQ-wKW" firstAttribute="centerX" secondItem="B6k-cd-kKW" secondAttribute="centerX" id="7eF-a8-Rku"/>
+                <constraint firstItem="kxf-QQ-wKW" firstAttribute="centerX" secondItem="Y8x-8X-gA4" secondAttribute="centerX" id="EEY-PQ-KDq"/>
+                <constraint firstItem="Y8x-8X-gA4" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="M7J-xL-1DG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Y8x-8X-gA4" secondAttribute="bottom" constant="324" id="RSJ-n0-v35"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="B6k-cd-kKW" secondAttribute="bottom" id="WHE-cT-4NF"/>
+                <constraint firstItem="kxf-QQ-wKW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="120" id="Zji-OO-r45"/>
+                <constraint firstItem="B6k-cd-kKW" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dKG-63-ZC3"/>
+                <constraint firstItem="kxf-QQ-wKW" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="17" id="kKS-XB-398"/>
+                <constraint firstItem="Y8x-8X-gA4" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sXk-Gj-dRz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="53.600000000000001" y="115.59220389805098"/>

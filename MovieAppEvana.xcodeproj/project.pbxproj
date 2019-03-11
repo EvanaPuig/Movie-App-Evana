@@ -32,6 +32,7 @@
 		206EAFF62235B5DA003F4695 /* PopularDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206EAFF52235B5DA003F4695 /* PopularDetailViewController.xib */; };
 		206EAFF82235B7C1003F4695 /* CategoriesTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206EAFF72235B7C1003F4695 /* CategoriesTabBarViewController.swift */; };
 		206EAFFA2235B7D0003F4695 /* CategoriesTabBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 206EAFF92235B7D0003F4695 /* CategoriesTabBarViewController.xib */; };
+		206EB0002235DF14003F4695 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 206EAFFE2235DF14003F4695 /* CoreDataModel.xcdatamodeld */; };
 		2085A5F022335AEA0010C95B /* PopularListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2085A5EF22335AEA0010C95B /* PopularListViewController.xib */; };
 		2085A5F222335BE00010C95B /* CategoriesCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2085A5F122335BE00010C95B /* CategoriesCustomCell.xib */; };
 		CF9AB14718E36AF25C328077 /* Pods_MovieAppEvana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA3ADCF4DA1F16146BFA4FAE /* Pods_MovieAppEvana.framework */; };
@@ -80,6 +81,7 @@
 		206EAFF52235B5DA003F4695 /* PopularDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopularDetailViewController.xib; sourceTree = "<group>"; };
 		206EAFF72235B7C1003F4695 /* CategoriesTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTabBarViewController.swift; sourceTree = "<group>"; };
 		206EAFF92235B7D0003F4695 /* CategoriesTabBarViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesTabBarViewController.xib; sourceTree = "<group>"; };
+		206EAFFF2235DF14003F4695 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		2085A5EF22335AEA0010C95B /* PopularListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopularListViewController.xib; sourceTree = "<group>"; };
 		2085A5F122335BE00010C95B /* CategoriesCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoriesCustomCell.xib; sourceTree = "<group>"; };
 		65D212DD9CA76DA2E2A5AD84 /* Pods_MovieAppEvanaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieAppEvanaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 				206B8716222D9D4D00D0DE44 /* CommonObjects.swift */,
 				206B8721222F138E00D0DE44 /* Configuration.swift */,
 				206B872D2230430A00D0DE44 /* SearchResult.swift */,
+				206EAFFE2235DF14003F4695 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				206EB0002235DF14003F4695 /* CoreDataModel.xcdatamodeld in Sources */,
 				206B8707222A0EB700D0DE44 /* CategoriesListViewModel.swift in Sources */,
 				206EAFEC2235B274003F4695 /* UpcomingListViewController.swift in Sources */,
 				206B871F222EF29300D0DE44 /* PopularDetailViewController.swift in Sources */,
@@ -795,6 +799,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		206EAFFE2235DF14003F4695 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				206EAFFF2235DF14003F4695 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 206EAFFF2235DF14003F4695 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 206B86C32229959400D0DE44 /* Project object */;
 }
