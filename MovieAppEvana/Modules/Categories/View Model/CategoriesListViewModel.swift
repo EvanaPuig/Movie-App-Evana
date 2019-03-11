@@ -14,8 +14,7 @@ class CategoriesListViewModel {
     
     private var movies: [Movie] = [Movie]()
     var formattedUrls = [String]()
-    var configuration = Configuration()
-    var container: NSPersistentContainer!
+    var configuration: Configuration?
     
     //Define selected model
     var selectedMovie: Movie?
@@ -69,20 +68,12 @@ class CategoriesListViewModel {
     var serverErrorStatus: (() -> ())?
     var didGetData: (() -> ())?
 
-    init(withPopular serviceProtocol: CategoriesListServiceProtocol = CategoriesListService() ) {
+    init(withPopular serviceProtocol: CategoriesListServiceProtocol = CategoriesListService()) {
         self.service = serviceProtocol
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
         
-        container = NSPersistentContainer(name: "CoreDataModel")
-        
-        container.loadPersistentStores { storeDescription, error in
-            if let error = error {
-                print("Unresolved error \(error)")
-            }
-        }
-
     }
 
     //MARK: Internet monitor status
@@ -126,7 +117,7 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getPopularMovies(pageNumber: pageNumber, success: { data in
-                print("MOVIES: --- \(data)")
+                print("POPULAR MOVIES: --- \(data)")
                 self.movies = data.results
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
@@ -148,7 +139,7 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getTopRatedMovies(pageNumber: pageNumber, success: { data in
-                print("MOVIES: --- \(data)")
+                print("TOP RATED MOVIES: --- \(data)")
                 self.movies = data.results
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
@@ -170,7 +161,7 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getUpcomingMovies(pageNumber: pageNumber, success: { data in
-                print("MOVIES: --- \(data)")
+                print("UPCOMING MOVIES: --- \(data)")
                 self.movies = data.results
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
@@ -183,24 +174,14 @@ class CategoriesListViewModel {
         }
     }
     
-    func saveContext() {
-        if container.viewContext.hasChanges {
-            do {
-                try container.viewContext.save()
-            } catch {
-                print("An error occurred while saving: \(error)")
-            }
-        }
-    }
-    
     func getCellViewModel( at indexPath: IndexPath ) -> CategoriesCustomCellViewModel {
         return cellViewModels[indexPath.row]
     }
     
     func createCellViewModel( movie: Movie ) -> CategoriesCustomCellViewModel {
         
-        let baseUrl = configuration.images?.secure_base_url
-        let imageSize = configuration.images?.poster_sizes?[4]
+        let baseUrl = configuration?.images.secure_base_url
+        let imageSize = configuration?.images.poster_sizes?[4]
         let posterPath = movie.poster_path
         
         let formattedURL = (baseUrl ?? "") + (imageSize ?? "") + (posterPath ?? "")
