@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 class CategoriesListViewModel {
     private let service: CategoriesListServiceProtocol
@@ -14,6 +15,7 @@ class CategoriesListViewModel {
     private var movies: [Movie] = [Movie]()
     var formattedUrls = [String]()
     var configuration = Configuration()
+    var container: NSPersistentContainer!
     
     //Define selected model
     var selectedMovie: Movie?
@@ -72,6 +74,14 @@ class CategoriesListViewModel {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.networkStatusChanged(_:)), name: NSNotification.Name(rawValue: ReachabilityStatusChangedNotification), object: nil)
         Reach().monitorReachabilityChanges()
+        
+        container = NSPersistentContainer(name: "CoreDataModel")
+        
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error {
+                print("Unresolved error \(error)")
+            }
+        }
 
     }
 
@@ -170,6 +180,16 @@ class CategoriesListViewModel {
             }
         default:
             break
+        }
+    }
+    
+    func saveContext() {
+        if container.viewContext.hasChanges {
+            do {
+                try container.viewContext.save()
+            } catch {
+                print("An error occurred while saving: \(error)")
+            }
         }
     }
     
