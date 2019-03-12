@@ -89,8 +89,9 @@ class CategoriesListViewModel {
         case .online:
             self.isLoading = true
             self.service.getConfiguration(success: { data in
-                print("CONFIGURATION: --- \(data)")
-                self.configuration = data
+                //print("CONFIGURATION: --- \(data)")
+                self.configuration = self.service.loadPersistedConfiguration()?.first
+                
                 if(caller == "popular"){
                     self.fetchPopularMovies(pageNumber: 1)
                 } else if(caller == "topRated") {
@@ -117,8 +118,11 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getPopularMovies(pageNumber: pageNumber, success: { data in
-                print("POPULAR MOVIES: --- \(data)")
-                self.movies = data.results
+                //print("POPULAR MOVIES: --- \(data)")
+                
+                let searchResults = self.service.loadSavedData()
+                self.movies = Array((searchResults?[0].results)!)
+                print("Movies: \(self.movies)")
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
             }) {
@@ -139,8 +143,9 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getTopRatedMovies(pageNumber: pageNumber, success: { data in
-                print("TOP RATED MOVIES: --- \(data)")
-                self.movies = data.results
+                //print("TOP RATED MOVIES: --- \(data)")
+                //self.movies = data.results
+                //self.movies = self.service.loadSavedData()
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
             }) {
@@ -161,8 +166,9 @@ class CategoriesListViewModel {
             self.isLoading = true
             
             self.service.getUpcomingMovies(pageNumber: pageNumber, success: { data in
-                print("UPCOMING MOVIES: --- \(data)")
-                self.movies = data.results
+                //print("UPCOMING MOVIES: --- \(data)")
+                //self.movies = data.results
+                //self.movies = self.service.loadSavedData()
                 self.processFetchedMovie(movies: self.movies)
                 self.isLoading = false
             }) {
@@ -201,6 +207,8 @@ class CategoriesListViewModel {
         }
         self.cellViewModels = vms
     }
+    
+    
 
 }
 

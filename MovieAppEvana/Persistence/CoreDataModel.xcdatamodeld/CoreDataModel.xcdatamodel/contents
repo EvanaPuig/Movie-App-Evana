@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="17G5019" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Collection" representedClassName="Collection" syncable="YES">
+    <entity name="Collection" representedClassName=".Collection" syncable="YES">
         <attribute name="backdrop_path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="parts" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="poster_path" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="belongs_to_collection" inverseEntity="Movie" syncable="YES"/>
+        <relationship name="parts" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CollectionParts" inverseName="collection" inverseEntity="CollectionParts" syncable="YES"/>
     </entity>
-    <entity name="CollectionParts" representedClassName="CollectionParts" syncable="YES">
+    <entity name="CollectionParts" representedClassName=".CollectionParts" syncable="YES">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="backdrop_path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="genre_ids" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -23,16 +24,18 @@
         <attribute name="video" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="vote_average" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="vote_count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="collection" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Collection" inverseName="parts" inverseEntity="Collection" syncable="YES"/>
     </entity>
     <entity name="Configuration" representedClassName=".Configuration" syncable="YES">
         <attribute name="change_keys" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="images" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Images" inverseName="configuration" inverseEntity="Images" syncable="YES"/>
     </entity>
-    <entity name="Genre" representedClassName="Genre" syncable="YES">
+    <entity name="Genre" representedClassName=".Genre" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="genres" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="Images" representedClassName="Images" syncable="YES">
+    <entity name="Images" representedClassName=".Images" syncable="YES">
         <attribute name="backdrop_sizes" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="base_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="logo_sizes" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -40,13 +43,12 @@
         <attribute name="profile_sizes" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="secure_base_url" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="still_sizes" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="configuration" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Configuration" inverseName="images" inverseEntity="Configuration" syncable="YES"/>
     </entity>
     <entity name="Movie" representedClassName=".Movie" syncable="YES">
         <attribute name="adult" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="backdrop_path" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="belongs_to_collection" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="budget" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="genres" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="homepage" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="image_formatted_url" optional="YES" attributeType="String" syncable="YES"/>
@@ -56,49 +58,60 @@
         <attribute name="overview" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="popularity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="poster_path" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="production_companies" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="production_countries" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="release_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="revenue" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="runtime" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="spoken_languages" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="tagline" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="video" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="vote_average" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="vote_count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="belongs_to_collection" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Collection" inverseName="movie" inverseEntity="Collection" syncable="YES"/>
+        <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Genre" inverseName="movie" inverseEntity="Genre" syncable="YES"/>
+        <relationship name="production_companies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductionCompany" inverseName="movie" inverseEntity="ProductionCompany" syncable="YES"/>
+        <relationship name="production_countries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductionCountries" inverseName="movie" inverseEntity="ProductionCountries" syncable="YES"/>
+        <relationship name="searchResults" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchResult" inverseName="results" inverseEntity="SearchResult" syncable="YES"/>
+        <relationship name="spoken_languages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SpokenLanguages" inverseName="movie" inverseEntity="SpokenLanguages" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
-    <entity name="ProductionCompany" representedClassName="ProductionCompany" syncable="YES">
+    <entity name="ProductionCompany" representedClassName=".ProductionCompany" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="logo_path" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="origin_country" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="production_companies" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="ProductionCountries" representedClassName="ProductionCountries" syncable="YES">
+    <entity name="ProductionCountries" representedClassName=".ProductionCountries" syncable="YES">
         <attribute name="iso_3166_1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="production_countries" inverseEntity="Movie" syncable="YES"/>
     </entity>
     <entity name="SearchResult" representedClassName=".SearchResult" syncable="YES">
         <attribute name="page" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="results" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="total_pages" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="total_results" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="searchResults" inverseEntity="Movie" syncable="YES"/>
     </entity>
-    <entity name="SpokenLanguages" representedClassName="SpokenLanguages" syncable="YES">
+    <entity name="SpokenLanguages" representedClassName=".SpokenLanguages" syncable="YES">
         <attribute name="iso_639_1" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Movie" inverseName="spoken_languages" inverseEntity="Movie" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Collection" positionX="-54" positionY="144" width="128" height="135"/>
-        <element name="CollectionParts" positionX="-36" positionY="153" width="128" height="255"/>
-        <element name="Configuration" positionX="-9" positionY="135" width="128" height="75"/>
-        <element name="Genre" positionX="-18" positionY="162" width="128" height="75"/>
-        <element name="Images" positionX="0" positionY="144" width="128" height="150"/>
-        <element name="Movie" positionX="-63" positionY="-18" width="128" height="435"/>
-        <element name="ProductionCompany" positionX="0" positionY="171" width="128" height="105"/>
-        <element name="ProductionCountries" positionX="18" positionY="180" width="128" height="75"/>
-        <element name="SearchResult" positionX="9" positionY="153" width="128" height="105"/>
-        <element name="SpokenLanguages" positionX="36" positionY="189" width="128" height="75"/>
+        <element name="Collection" positionX="-245.7265625" positionY="307.91796875" width="128" height="150"/>
+        <element name="CollectionParts" positionX="-89.35546875" positionY="232.4609375" width="128" height="270"/>
+        <element name="Configuration" positionX="-417.43359375" positionY="126.21484375" width="128" height="75"/>
+        <element name="Genre" positionX="-246.390625" positionY="213.4765625" width="128" height="90"/>
+        <element name="Images" positionX="-239.72265625" positionY="36.21484375" width="128" height="165"/>
+        <element name="Movie" positionX="-421.75390625" positionY="234.40625" width="128" height="450"/>
+        <element name="ProductionCompany" positionX="-245.7890625" positionY="467.4765625" width="128" height="120"/>
+        <element name="ProductionCountries" positionX="-246.7734375" positionY="600.91015625" width="128" height="90"/>
+        <element name="SearchResult" positionX="-597.390625" positionY="251.5859375" width="128" height="105"/>
+        <element name="SpokenLanguages" positionX="-246.3984375" positionY="704.90625" width="128" height="90"/>
     </elements>
 </model>

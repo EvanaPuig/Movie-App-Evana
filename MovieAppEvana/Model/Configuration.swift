@@ -15,6 +15,10 @@ class Configuration: NSManagedObject, Codable {
         case change_keys
     }
     
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Configuration> {
+        return NSFetchRequest<Configuration>(entityName: "Configuration")
+    }
+    
     @NSManaged var images: Images
     @NSManaged var change_keys: Array<String>?
     

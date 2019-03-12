@@ -17,8 +17,12 @@ class SearchResult: NSManagedObject, Codable {
         case total_pages
     }
     
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<SearchResult> {
+        return NSFetchRequest<SearchResult>(entityName: "SearchResult")
+    }
+    
     @NSManaged var page: Int16
-    @NSManaged var results: [Movie]
+    @NSManaged var results: Set<Movie>
     @NSManaged var total_results: Int32
     @NSManaged var total_pages: Int32
     
@@ -34,7 +38,7 @@ class SearchResult: NSManagedObject, Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.page = Int16(try container.decodeIfPresent(Int.self, forKey: .page) ?? 0)
-        self.results = try container.decodeIfPresent([Movie].self, forKey: .results) ?? [Movie()]
+        self.results = try container.decodeIfPresent(Set<Movie>.self, forKey: .results) ?? Set()
         self.total_results = Int32(try container.decodeIfPresent(Int.self, forKey: .total_results) ?? 0)
         self.total_pages = Int32(try container.decodeIfPresent(Int.self, forKey: .total_pages) ?? 0)
     }

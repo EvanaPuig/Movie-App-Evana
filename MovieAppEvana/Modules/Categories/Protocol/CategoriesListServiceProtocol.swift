@@ -19,5 +19,7 @@ protocol CategoriesListServiceProtocol {
     func getUpcomingMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ())
     func getTopRatedMovies(pageNumber: Int, success: @escaping(_ data: SearchResult) -> (), failure: @escaping() -> ())
     func getConfiguration(success: @escaping(_ data: Configuration) -> (), failure: @escaping() -> ())
+    func loadSavedData() -> [SearchResult]?
+    func loadPersistedConfiguration() -> [Configuration]?
 
 }

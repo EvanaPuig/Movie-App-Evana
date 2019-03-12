@@ -40,10 +40,15 @@ class Movie: NSManagedObject, Codable {
         case image_formatted_url
     }
     
+    
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Movie> {
+        return NSFetchRequest<Movie>(entityName: "Movie")
+    }
+    
     // MARK: - Core Data Managed Object
     @NSManaged var adult: Bool
     @NSManaged var backdrop_path: String?
-    @NSManaged var belongs_to_collection: Collection
+    @NSManaged var belongs_to_collection: Collection?
     @NSManaged var budget: Int16
     @NSManaged var genres: Array<Genre>?
     @NSManaged var homepage: String?
@@ -79,9 +84,9 @@ class Movie: NSManagedObject, Codable {
         self.init(entity: entity, insertInto: managedObjectContext)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.adult = (try container.decodeIfPresent(Bool.self, forKey: .adult)) != nil
+        self.adult = try container.decodeIfPresent(Bool.self, forKey: .adult) ?? false
         self.backdrop_path = try container.decodeIfPresent(String.self, forKey: .backdrop_path)
-        self.belongs_to_collection = try container.decodeIfPresent(Collection.self, forKey: .belongs_to_collection) ?? Collection()
+        self.belongs_to_collection = try container.decodeIfPresent(Collection.self, forKey: .belongs_to_collection)
         self.budget = Int16(try container.decodeIfPresent(Int.self, forKey: .budget) ?? 0)
         self.genres = try container.decodeIfPresent([Genre].self, forKey: .genres)
         self.homepage = try container.decodeIfPresent(String.self, forKey: .homepage)

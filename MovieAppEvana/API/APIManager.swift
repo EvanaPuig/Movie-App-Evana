@@ -45,7 +45,7 @@ struct APIManager {
                 queue: DispatchQueue.main,
                 encoding: String.Encoding.utf8) { response in
                     
-                    print("--\n \n CALLBACK RESPONSE: \(response)")
+                    //print("--\n \n CALLBACK RESPONSE: \(response)")
                     
                     if response.response?.statusCode == 200 {
                         guard let callback = response.data else {
@@ -62,21 +62,7 @@ struct APIManager {
                         }
                         
                         print("MAP GLOBAL ERROR FOR: \(callbackError)" )
-                        
-//                        do {
-//                            let decoded = try JSONDecoder().decode(
-//                                AFError.self, from: callbackError)
-//                            if let messageError = decoded.data?.errors?.messages, let errorCode = decoded.statusCode {
-//                                let messages = messageError.joined(separator: ", ")
-//                                failure(messages, errorCode)
-//                            } else {
-//                                failure(APIManager.generateRandomError(), 0)
-//                            }
-//                        } catch _ {
-//                            failure(APIManager.generateRandomError(), 0)
-//                        }
                     }
-                    
         }
         
     }
