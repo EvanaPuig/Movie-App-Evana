@@ -30,7 +30,6 @@ class PopularListViewController: UIViewController {
         // init view model
         initViewModel()
         
-        
     }
     
     func initView() {
@@ -159,8 +158,13 @@ extension PopularListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let selectedMovie = self.viewModel.userPressed(at: indexPath)
-        print(selectedMovie)
+        let selectedMovie: Movie
+        
+        if isFiltering() {
+            selectedMovie = filteredMovies[indexPath.row]
+        } else {
+            selectedMovie = self.viewModel.userPressed(at: indexPath)
+        }
         
         let popularDetailViewController = PopularDetailViewController(nibName:"PopularDetailViewController", bundle: nil)
         popularDetailViewController.selectedMovie = selectedMovie

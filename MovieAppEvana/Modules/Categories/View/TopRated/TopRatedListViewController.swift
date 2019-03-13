@@ -18,6 +18,9 @@ class TopRatedListViewController: UIViewController {
         return CategoriesListViewModel()
     }()
     
+    let searchController = UISearchController(searchResultsController: nil)
+    private var filteredMovies = [Movie]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +41,14 @@ class TopRatedListViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         tableView.register(UINib(nibName: "CategoriesCustomCell", bundle: nil), forCellReuseIdentifier: "CategoriesCustomCell");
+        
+        // Setup the Search Controller
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Popular Movies"
+        tableView.tableHeaderView = searchController.searchBar
+        
+        definesPresentationContext = true
     }
     
     func initViewModel() {
@@ -89,6 +100,23 @@ class TopRatedListViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func searchBarIsEmpty() -> Bool {
+        // Returns true if the text is empty or nil
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredMovies = viewModel.movies.filter({( movie : Movie) -> Bool in
+            return movie.title?.lowercased().contains(searchText.lowercased()) ?? false
+        })
+        
+        tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
+    }
+    
 }
 
 extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -99,8 +127,15 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
             fatalError(MovieAppConstants.cellUnexistentError)
         }
         
-        let cellVM = viewModel.getCellViewModel( at: indexPath )
-        cell.movieListCellViewModel = cellVM
+        if isFiltering() {
+            cell.nameLabel.text = filteredMovies[indexPath.row].title
+            cell.descriptionLabel.text = filteredMovies[indexPath.row].overview
+            cell.mainImageView?.sd_setImage(with: URL( string: filteredMovies[indexPath.row].image_formatted_url ?? "" ), completed: nil)
+            cell.dateLabel.text = filteredMovies[indexPath.row].release_date
+        } else {
+            let cellVM = viewModel.getCellViewModel( at: indexPath )
+            cell.movieListCellViewModel = cellVM
+        }
         
         return cell
     }
@@ -110,6 +145,10 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering() {
+            return filteredMovies.count
+        }
+        
         return viewModel.numberOfCells
     }
     
@@ -118,8 +157,13 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        let selectedMovie = self.viewModel.userPressed(at: indexPath)
-        print(selectedMovie)
+        let selectedMovie: Movie
+        
+        if isFiltering() {
+            selectedMovie = filteredMovies[indexPath.row]
+        } else {
+            selectedMovie = self.viewModel.userPressed(at: indexPath)
+        }
         
         let popularDetailViewController = PopularDetailViewController(nibName:"PopularDetailViewController", bundle: nil)
         popularDetailViewController.selectedMovie = selectedMovie
@@ -131,4 +175,9 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
     
 }
 
-
+extension TopRatedListViewController: UISearchResultsUpdating {
+    // MARK: - UISearchResultsUpdating Delegate
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+}
