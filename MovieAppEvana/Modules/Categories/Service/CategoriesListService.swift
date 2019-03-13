@@ -47,6 +47,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
                     let decoder = JSONDecoder()
                     decoder.userInfo[codingUserInfoKeyManagedObjectContext] = managedObjectContext
                     let decoded = try decoder.decode(SearchResult.self, from: data)
+                    decoded.unique_id = 0
                     try managedObjectContext.save()
                     success(decoded)
                 } catch {
@@ -81,6 +82,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
                     let decoder = JSONDecoder()
                     decoder.userInfo[codingUserInfoKeyManagedObjectContext] = managedObjectContext
                     let decoded = try decoder.decode(SearchResult.self, from: data)
+                    decoded.unique_id = 2
                     try managedObjectContext.save()
                     success(decoded)
                 } catch {
@@ -115,6 +117,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
                     let decoder = JSONDecoder()
                     decoder.userInfo[codingUserInfoKeyManagedObjectContext] = managedObjectContext
                     let decoded = try decoder.decode(SearchResult.self, from: data)
+                    decoded.unique_id = 1
                     try managedObjectContext.save()
                     success(decoded)
                 } catch {
@@ -149,6 +152,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
                     let decoder = JSONDecoder()
                     decoder.userInfo[codingUserInfoKeyManagedObjectContext] = managedObjectContext
                     let decoded = try decoder.decode(Configuration.self, from: data)
+                    
                     try managedObjectContext.save()
                     success(decoded)
                 } catch {
@@ -178,7 +182,7 @@ class CategoriesListService: CategoriesListServiceProtocol {
     
     func loadSavedData() -> [SearchResult]?{
         let request = SearchResult.createFetchRequest()
-        let sort = NSSortDescriptor(key: "page", ascending: false)
+        let sort = NSSortDescriptor(key: "unique_id", ascending: false)
         request.sortDescriptors = [sort]
         
         do {

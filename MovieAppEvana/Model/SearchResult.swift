@@ -11,6 +11,7 @@ import CoreData
 
 class SearchResult: NSManagedObject, Codable {
     enum CodingKeys: String, CodingKey {
+        case unique_id
         case page
         case results
         case total_results
@@ -21,6 +22,7 @@ class SearchResult: NSManagedObject, Codable {
         return NSFetchRequest<SearchResult>(entityName: "SearchResult")
     }
     
+    @NSManaged var unique_id: Int16
     @NSManaged var page: Int16
     @NSManaged var results: Set<Movie>
     @NSManaged var total_results: Int32
@@ -37,6 +39,7 @@ class SearchResult: NSManagedObject, Codable {
         self.init(entity: entity, insertInto: managedObjectContext)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.unique_id = Int16(try container.decodeIfPresent(Int.self, forKey: .unique_id) ?? 0)
         self.page = Int16(try container.decodeIfPresent(Int.self, forKey: .page) ?? 0)
         self.results = try container.decodeIfPresent(Set<Movie>.self, forKey: .results) ?? Set()
         self.total_results = Int32(try container.decodeIfPresent(Int.self, forKey: .total_results) ?? 0)
@@ -46,6 +49,7 @@ class SearchResult: NSManagedObject, Codable {
     // MARK: - Encodable
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(unique_id, forKey:CodingKeys.unique_id)
         try container.encode(page, forKey:CodingKeys.page)
         try container.encode(results, forKey:CodingKeys.results)
         try container.encode(total_results, forKey:CodingKeys.total_results)

@@ -28,7 +28,13 @@
     </entity>
     <entity name="Configuration" representedClassName=".Configuration" syncable="YES">
         <attribute name="change_keys" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="images" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Images" inverseName="configuration" inverseEntity="Images" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="unique_id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Genre" representedClassName=".Genre" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -95,7 +101,13 @@
         <attribute name="page" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="total_pages" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="total_results" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="unique_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="results" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Movie" inverseName="searchResults" inverseEntity="Movie" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="unique_id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="SpokenLanguages" representedClassName=".SpokenLanguages" syncable="YES">
         <attribute name="iso_639_1" optional="YES" attributeType="String" syncable="YES"/>
@@ -105,13 +117,13 @@
     <elements>
         <element name="Collection" positionX="-245.7265625" positionY="307.91796875" width="128" height="150"/>
         <element name="CollectionParts" positionX="-89.35546875" positionY="232.4609375" width="128" height="270"/>
-        <element name="Configuration" positionX="-417.43359375" positionY="126.21484375" width="128" height="75"/>
+        <element name="Configuration" positionX="-417.43359375" positionY="126.21484375" width="128" height="90"/>
         <element name="Genre" positionX="-246.390625" positionY="213.4765625" width="128" height="90"/>
         <element name="Images" positionX="-239.72265625" positionY="36.21484375" width="128" height="165"/>
         <element name="Movie" positionX="-421.75390625" positionY="234.40625" width="128" height="450"/>
         <element name="ProductionCompany" positionX="-245.7890625" positionY="467.4765625" width="128" height="120"/>
         <element name="ProductionCountries" positionX="-246.7734375" positionY="600.91015625" width="128" height="90"/>
-        <element name="SearchResult" positionX="-597.390625" positionY="251.5859375" width="128" height="105"/>
+        <element name="SearchResult" positionX="-597.390625" positionY="251.5859375" width="128" height="120"/>
         <element name="SpokenLanguages" positionX="-246.3984375" positionY="704.90625" width="128" height="90"/>
     </elements>
 </model>
