@@ -201,7 +201,7 @@ class CategoriesListViewModel {
         movie.image_formatted_url = formattedURL
         
         return CategoriesCustomCellViewModel( titleText: movie.title ?? MovieAppConstants.movieNoTitle,
-                                         descText: movie.overview ?? MovieAppConstants.movieNoOverview,
+                                              popularityText: movie.popularity.description + "/10" ,
                                          imageUrl: formattedURL,
                                          dateText: movie.release_date ?? MovieAppConstants.movieNoReleaseDate )
     }

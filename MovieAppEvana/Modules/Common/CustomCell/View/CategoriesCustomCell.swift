@@ -10,15 +10,15 @@ import UIKit
 
 class CategoriesCustomCell: UITableViewCell {
     @IBOutlet weak var mainImageView: UIImageView!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var popularityLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     var movieListCellViewModel : CategoriesCustomCellViewModel? {
         didSet {
             nameLabel.text = movieListCellViewModel?.titleText
-            descriptionLabel.text = movieListCellViewModel?.descText
+            popularityLabel.text = "Popularity: \(movieListCellViewModel?.popularityText ?? "0.0")"
             mainImageView?.sd_setImage(with: URL( string: movieListCellViewModel?.imageUrl ?? "" ), completed: nil)
-            dateLabel.text = movieListCellViewModel?.dateText
+            dateLabel.text = "Release date: \(movieListCellViewModel?.dateText ?? "")"
         }
     }
 }

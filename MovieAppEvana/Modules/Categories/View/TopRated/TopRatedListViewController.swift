@@ -129,7 +129,7 @@ extension TopRatedListViewController: UITableViewDelegate, UITableViewDataSource
         
         if isFiltering() {
             cell.nameLabel.text = filteredMovies[indexPath.row].title
-            cell.descriptionLabel.text = filteredMovies[indexPath.row].overview
+            cell.popularityLabel.text = filteredMovies[indexPath.row].overview
             cell.mainImageView?.sd_setImage(with: URL( string: filteredMovies[indexPath.row].image_formatted_url ?? "" ), completed: nil)
             cell.dateLabel.text = filteredMovies[indexPath.row].release_date
         } else {

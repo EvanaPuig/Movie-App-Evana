@@ -18,6 +18,10 @@ class Genre: NSManagedObject, Codable {
     @NSManaged var id: Int
     @NSManaged var name: String?
     
+    @nonobjc public class func createFetchRequest() -> NSFetchRequest<Genre> {
+        return NSFetchRequest<Genre>(entityName: "Genre")
+    }
+    
     // MARK: - Decodable
     required convenience init(from decoder: Decoder) throws {
         guard let codingUserInfoKeyManagedObjectContext = CodingUserInfoKey.managedObjectContext,

@@ -50,7 +50,7 @@ class Movie: NSManagedObject, Codable {
     @NSManaged var backdrop_path: String?
     @NSManaged var belongs_to_collection: Collection?
     @NSManaged var budget: Int16
-    @NSManaged var genres: Array<Genre>?
+    @NSManaged var genres: Set<Genre>?
     @NSManaged var homepage: String?
     @NSManaged var id: Int32
     @NSManaged var imdb_id: String?
@@ -88,7 +88,7 @@ class Movie: NSManagedObject, Codable {
         self.backdrop_path = try container.decodeIfPresent(String.self, forKey: .backdrop_path)
         self.belongs_to_collection = try container.decodeIfPresent(Collection.self, forKey: .belongs_to_collection)
         self.budget = Int16(try container.decodeIfPresent(Int.self, forKey: .budget) ?? 0)
-        self.genres = try container.decodeIfPresent([Genre].self, forKey: .genres)
+        self.genres = try container.decodeIfPresent(Set<Genre>.self, forKey: .genres)
         self.homepage = try container.decodeIfPresent(String.self, forKey: .homepage)
         self.id = Int32(try container.decodeIfPresent(Int.self, forKey: .id) ?? 0)
         self.imdb_id = try container.decodeIfPresent(String.self, forKey: .imdb_id)
