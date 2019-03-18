@@ -54,5 +54,7 @@ La aplicación fue desarrollada con el model MVVM(Model View View Model) y const
 5. AppDelegate: Esta es una clase común a todas las aplicaciones de iOS que se hace cargo del ciclo de vida de la aplicación.
 
 ## ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito?
+Consiste en que cada una de las clases, modulos o funciones de la aplicación debe hacerse responsable únicamente de una parte de la funcionalidad de la aplicación. El propósito es que cuando se edite o modifique una de las partes de la aplicación sólo sea por un motivo específico y que no se pueda afectar a otras partes de la aplicación, así mismo, le da una mayor mantenibilidad al código.
 
 ## ¿Qué características tiene, según su opinión, un “buen” código o código limpio?
+
