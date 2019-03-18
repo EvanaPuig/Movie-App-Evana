@@ -11,47 +11,47 @@ La aplicación fue desarrollada con el model MVVM(Model View View Model) y const
 
 ## Responsabilidad de las clases creadas
 1. Common
-   - MovieAppConstants:
+   - MovieAppConstants: Esta clase contiene todas las constantes presentes en la aplicación.
 2. Modelos
-   - SearchResult
-   - Movie
-   - Collection
-   - CollectionParts
-   - Genre
-   - ProductionCompany
-   - ProductionCountries
-   - SpokenLanguages
-   - Configuration
-   - Images
+   - SearchResult: Esta clase mapea el objeto de los resultados de búsqueda provenientes de la API.
+   - Movie: Esta clase mapea el objeto de las películas provenientes de la API.
+   - Collection: Esta clase mapea el objeto de las colecciones provenientes de la API.
+   - CollectionParts: Esta clase mapea el objeto de las partes de las colecciones provenientes de la API.
+   - Genre: Esta clase mapea el objeto de los géneros de las películas provenientes de la API.
+   - ProductionCompany: Esta clase mapea el objeto de las compañías productoras provenientes de la API.
+   - ProductionCountries: Esta clase mapea el objeto de los países productores provenientes de la API.
+   - SpokenLanguages: Esta clase mapea el objeto de los idiomas hablados de las películas provenientes de la API.
+   - Configuration: Esta clase mapea el objeto de la configuración proveniente de la API.
+   - Images: Esta clase mapea el objeto de las imágenes provenientes de la API.
 3. API
-   - APIManager
-   - Reach
+   - APIManager: Esta clase es un helper para las conexiones con la API a través de Alamofire.
+   - Reach: Esta clase es un helper para monitorear si el dispositivo tiene o no conexión a internet.
 4. Modules
    - Common
      - CustomCell
        - View
-         - CategoriesCustomCell
+         - CategoriesCustomCell: Esta clase es la vista de las celdas de la lista que muestra las películas.
        - ViewModel
-         - CategoriesCustomCellViewModel
+         - CategoriesCustomCellViewModel: Esta clase es el modelo de la vista de las celdas de la lista que muestra las películas.
    - Categories
      - Protocol
-       - CategoriesListServiceProtocol
+       - CategoriesListServiceProtocol: Este es el protocolo que define los métodos de los servicios que se llaman en la aplicación.
      - Service
-       - CategoriesListService
+       - CategoriesListService: Esta clase contiene la lógica y llamados a los servicios a la API.
      - View
-       - CategoriesTabBarViewController
+       - CategoriesTabBarViewController: Esta clase controla la vista de TabBar en la parte inferior de la aplicación.
        - Popular
-         - PopularListViewController
+         - PopularListViewController: Esta clase controla la lista de películas populares.
        - Upcoming
-         - UpcomingListViewController
+         - UpcomingListViewController: Esta clase controla la lista de películas upcoming.
        - TopRated
-         - TopRatedListViewController
+         - TopRatedListViewController: Esta clase controla la lista de películas top rated.
      - ViewModel
-       - CategoriesListViewModel
+       - CategoriesListViewModel: Esta clase genera el modelo de la vista para las tres listas de la aplicación (popular, upcoming y top rated).
    - CategoriesDetail
      - View
-       - PopularDetailViewController
-5. AppDelegate
+       - PopularDetailViewController: Esta clase controla la vista del detalle de las películas de la aplicación.
+5. AppDelegate: Esta es una clase común a todas las aplicaciones de iOS que se hace cargo del ciclo de vida de la aplicación.
 
 ## ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito?
 
