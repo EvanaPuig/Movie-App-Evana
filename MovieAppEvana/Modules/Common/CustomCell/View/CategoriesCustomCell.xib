@@ -24,25 +24,38 @@
                             <constraint firstAttribute="width" constant="100" id="t5x-27-17l"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWP-So-vfk">
-                        <rect key="frame" x="16" y="21" width="259" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWP-So-vfk">
+                        <rect key="frame" x="16" y="21" width="259" height="26"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Label">
+                                <attributes>
+                                    <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="22" name="Arial-Black"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqM-8S-vQv">
-                        <rect key="frame" x="16" y="52" width="259" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eqM-8S-vQv">
+                        <rect key="frame" x="16" y="57" width="259" height="21"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Label">
+                                <attributes>
+                                    <color key="NSColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" metaFont="system" size="17"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONH-27-u27">
-                        <rect key="frame" x="16" y="83" width="259" height="21"/>
+                        <rect key="frame" x="16" y="88" width="259" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="ONH-27-u27" firstAttribute="top" secondItem="eqM-8S-vQv" secondAttribute="bottom" constant="10" id="IN5-4R-L01"/>
                     <constraint firstItem="uWP-So-vfk" firstAttribute="leading" secondItem="mjO-jA-QDp" secondAttribute="leadingMargin" id="ITJ-Gm-Fw6"/>
@@ -60,9 +73,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="dateLabel" destination="ONH-27-u27" id="q1W-53-JoZ"/>
-                <outlet property="descriptionLabel" destination="eqM-8S-vQv" id="GGt-rO-6LK"/>
                 <outlet property="mainImageView" destination="wMH-sP-8XZ" id="aXm-Sp-PRW"/>
                 <outlet property="nameLabel" destination="uWP-So-vfk" id="vpO-MF-rdt"/>
+                <outlet property="popularityLabel" destination="eqM-8S-vQv" id="NxT-sv-lmx"/>
             </connections>
             <point key="canvasLocation" x="72.799999999999997" y="-203.29835082458771"/>
         </tableViewCell>

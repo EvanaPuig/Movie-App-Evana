@@ -10,7 +10,7 @@ import Foundation
 
 struct CategoriesCustomCellViewModel {
     let titleText: String
-    let descText: String
+    let popularityText: String
     let imageUrl: String
     let dateText: String
 }
