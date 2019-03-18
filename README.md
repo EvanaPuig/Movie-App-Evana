@@ -52,3 +52,7 @@ La aplicación fue desarrollada con el model MVVM(Model View View Model) y const
      - View
        - PopularDetailViewController
 5. AppDelegate
+
+## ¿En qué consiste el principio de responsabilidad única? ¿Cuál es su propósito?
+
+## ¿Qué características tiene, según su opinión, un “buen” código o código limpio?
